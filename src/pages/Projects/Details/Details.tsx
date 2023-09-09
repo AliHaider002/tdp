@@ -1,7 +1,13 @@
+"use client";
 import Landingcard2 from "@/Components/LandingCard2/LandingCard2";
 import Layer from "@/Components/Layer/Layer";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
+import Drawer from "./Modal/Modal";
+
+interface Props {
+  handleDrawer: () => void
+}
 
 const Details = () => {
   return (
@@ -15,6 +21,7 @@ const Details = () => {
       }}
       className="border border-[#4C5C75] rounded-[30px] w-full "
     >
+      
       <div className="w-[98%] flex flex-row justify-between items-center gap-x-1 ">
         <div className="w-[45%] flex flex-row justify-center items-center gap-x-1">
           <div>
@@ -94,34 +101,39 @@ const Details = () => {
       </div>
       <div className="flex flex-row justify-between items-center w-full pt-2 pr-5">
         <div>
-            <h5 className="text-[14px]">Keep up to good work!</h5>
+          <h5 className="text-[14px]">Keep up to good work!</h5>
         </div>
         <div className="flex flex-row justify-end items-center w-[40%] gap-x-4">
           <div
-          style={{
-            backgroundColor: "rgba(255, 255, 255, 0.1)",
-            padding: "5px 10px",
-            borderRadius: "30px",
-          }}
-          className="flex flex-row justify-between items-center w-[45%] border border-gray-400"
-        >
-          <div className="flex flex-row justify-center items-center gap-x-4 ">
+            style={{
+              backgroundColor: "rgba(255, 255, 255, 0.1)",
+              padding: "5px 10px",
+              borderRadius: "30px",
+            }}
+            className="flex flex-row justify-between items-center w-[45%] border border-gray-400"
+          >
+            <div className="flex flex-row justify-center items-center gap-x-4 ">
+              <div>
+                <Image
+                  src={"/icons/search.png"}
+                  width={20}
+                  height={20}
+                  alt="logo"
+                />
+              </div>
+              <div>
+                <h1>Search</h1>
+              </div>
+            </div>
             <div>
               <Image
-                src={"/icons/search.png"}
+                src={"/icons/cross.png"}
                 width={20}
                 height={20}
                 alt="logo"
               />
             </div>
-            <div>
-              <h1>Search</h1>
-            </div>
           </div>
-          <div>
-            <Image src={"/icons/cross.png"} width={20} height={20} alt="logo" />
-          </div>
-        </div>
           <div
             style={{
               backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -164,9 +176,12 @@ const Details = () => {
           </div>
         </div>
       </div>
+      
       <div className="pr-1">
         <Landingcard2 />
+        
       </div>
+      
     </div>
   );
 };

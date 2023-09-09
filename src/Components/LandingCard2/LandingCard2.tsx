@@ -1,13 +1,20 @@
 import { landingcard, landingcard2 } from "@/constants";
+import { openModel } from "@/store/Reducers/ModelState";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 const Landingcard2 = () => {
   // Split the landingcard array into chunks of 3 elements each
+  const dispatch = useDispatch();
   const chunkedLandingCards = [];
   for (let i = 0; i < landingcard.length; i += 3) {
     chunkedLandingCards.push(landingcard.slice(i, i + 3));
+  }
+
+  const handleDrawer = () => {
+    dispatch(openModel(true));
   }
 
   return (
@@ -31,7 +38,7 @@ const Landingcard2 = () => {
             <h3>Pending ({landingcard2[0].pending.length})</h3>
           </div>
           {landingcard2[0].pending.map((card, i) => (
-            <Link href={card.path} className="mr-3">
+            <div onClick={handleDrawer} className="mr-3 cursor-pointer">
               <div
                 style={{
                   backgroundColor: "rgba(56, 62, 186, 0.1)",
@@ -160,7 +167,7 @@ const Landingcard2 = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
         <div
@@ -181,7 +188,7 @@ const Landingcard2 = () => {
             <h3>In Progress ({landingcard2[0].inProgress.length})</h3>
           </div>
           {landingcard2[0].inProgress.map((card, i) => (
-            <Link href={card.path} className="mr-3">
+            <div onClick={handleDrawer} className="mr-3 cursor-pointer">
             <div
               style={{
                 backgroundColor: "rgba(56, 62, 186, 0.1)",
@@ -310,7 +317,7 @@ const Landingcard2 = () => {
                 </div>
               </div>
             </div>
-          </Link>
+          </div>
           ))}
         </div>
         <div
@@ -331,7 +338,7 @@ const Landingcard2 = () => {
             <h3>Done ({landingcard2[0].done.length})</h3>
           </div>
           {landingcard2[0].done.map((card, i) => (
-            <Link href={card.path} className="mr-3">
+            <div onClick={handleDrawer} className="mr-3 cursor-pointer">
               <div
                 style={{
                   backgroundColor: "rgba(56, 62, 186, 0.1)",
@@ -460,7 +467,7 @@ const Landingcard2 = () => {
                   </div>
                 </div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

@@ -1,12 +1,28 @@
 // components/Layout.js
+"use client"
+import { useAppSelector } from "@/Hooks/redux";
 import { sideLinks } from "@/constants";
+import { RootState } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import Modal from "@/pages/Projects/Details/Modal/Modal"
+import { useDispatch } from "react-redux";
+import { openModel } from "@/store/Reducers/ModelState";
+// import { useSelector } from 'react-redux';
+
 // import backgroundImg from '';
-
-
 const Layout = ({ children }: any) => {
+  const { modelState } = useAppSelector(state => state.counterReducer);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+const dispatch = useDispatch();
+  const openDrawer = () => {
+    setIsDrawerOpen(true);
+  };
+
+  const closeDrawer = () => {
+    dispatch(openModel(false))
+  };
   const asideStyles = {
     backgroundImage: `url("/images/background.png")`, // Use the imported background image
     backgroundPosition: 'top right', // Position the image at the top right
@@ -15,6 +31,7 @@ const Layout = ({ children }: any) => {
   };
   return (
     <div className="bg-[#192841] text-[#FEFFFD] flex h-screen">
+      {modelState && <Modal isOpen={modelState} onClose={closeDrawer} />}
       <aside
         style={{
           borderBottomRightRadius: "25px",
